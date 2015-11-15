@@ -104,17 +104,6 @@ public class Manager {
                 abcUtil.INT_TRACKER.NEXT_RUN_AT.reset();
                 lastBusyTime = System.currentTimeMillis();
                 break;
-            case TOKEN_PICKUP:
-            	final String MOG = "Mark of Grace"; 
-            	RSGroundItem[] marks = GroundItems.find(MOG);
-            	RSTile myPos = Player.getPosition();
-            	if (marks.length > 0){
-            		RSTile marksTile = marks[0].getPosition();
-            		if(marksTile.distanceTo(Player.getPosition()) > 8){
-            			WebWalking.walkTo(marksTile);
-            			
-            		}
-            	}
         }
     }
 

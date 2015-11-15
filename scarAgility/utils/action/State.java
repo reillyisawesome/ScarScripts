@@ -5,6 +5,5 @@ public enum State {
     WALK_TO_COURSE,
     INSIDE_COURSE,
     STUCK,
-    RUN_ENERGY,
-    TOKEN_PICKUP
+    RUN_ENERGY
 }
