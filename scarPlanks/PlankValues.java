@@ -18,24 +18,32 @@ public class PlankValues {
     public static int interfaceChild;
     static ABCUtil abc = new ABCUtil();
     public static boolean runScript = true;
-    public static int[] potionIds = {12631,12629,12627,12625};
-    
-    
-    public static boolean atMill(){
-        return plankArea.contains(Player.getPosition());
-    }
+    public static int[] potionIds = {12631,12629,12627,12625, //Stamina Potions
+    								0 ,0 ,0 ,0, //Super Energy Potions
+    								0 ,0 ,0 ,0, //Energy Potions
+    								0 ,0 ,0 ,0};  //Anything Else
     
     public static boolean atBank(){
     	return bankArea.contains(Player.getPosition());
     }
     
+    public static boolean atSawMill() {
+		return plankArea.contains(Player.getPosition());
+	}
+    
     public static boolean hasLogs(){
         return Inventory.getCount(logs) > 0;
+    }
+    
+    public static boolean hasPlanks(){
+    	return Inventory.getCount(planks) > 0;
     }
 
     public static boolean hasPotions(){
         return Inventory.find(potionIds).length > 0;
     }
+
+
     
 
 }
