@@ -1,22 +1,20 @@
 package scripts.scarPlanks.nodes;
 
-import scripts.scarPlanks.nodehandler.Node;
+import org.tribot.api2007.Game;
 
-public class Potions extends Node {
+import scripts.scarPlanks.PlankValues;
 
-	@Override
-	public void execute() {
-		
-	}
+public class Potions extends Thread  {
+	
+    @Override
+    public void run() {
+        if((Game.getSetting(638) == 0 && PlankValues.hasPotions() && Game.getRunEnergy() <= 70) || Game.getRunEnergy() == 0){
+            PlankValues.drinkPotion();
+        }
+    }
 
-	@Override
-	public boolean validate() {
-		return false;
-	}
-
-	@Override
-	public int priority() {
-		return 0;
-	}
+    public static void main(String args[]){
+        (new Potions()).start();
+    }
 
 }
