@@ -32,7 +32,7 @@ public class WalkToSawMill extends Node{
 
 	@Override
 	public int priority() {
-		return 0;
+		return 2;
 	}
 
 }

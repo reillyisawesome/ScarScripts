@@ -1,9 +1,18 @@
 package scripts.scarPlanks;
 
+import org.tribot.api.Clicking;
+import org.tribot.api.General;
+import org.tribot.api.Timing;
+import org.tribot.api.types.generic.Condition;
 import org.tribot.api.util.ABCUtil;
+import org.tribot.api2007.Banking;
+import org.tribot.api2007.Game;
+import org.tribot.api2007.Interfaces;
 import org.tribot.api2007.Inventory;
+import org.tribot.api2007.Options;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSArea;
+import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSTile;
 
 import scripts.ScarAPI.Utility.PriceChecker;
@@ -20,7 +29,7 @@ public class PlankValues {
     public static boolean guiComplete = false;
     public static boolean usePotions;
     public static int interfaceChild;
-    static ABCUtil abc = new ABCUtil();
+    public static ABCUtil abc = new ABCUtil();
     public static boolean runScript = true;
     
     public static boolean atBank(){
@@ -43,12 +52,24 @@ public class PlankValues {
         return Inventory.find(potionIds).length > 0;
     }
     
-	public static boolean plankprice(){
-    	return PriceChecker.getGEPrice(plankInt) > 0;
+	public static int plankprice(){
+		return PriceChecker.getOSbuddyPrice(plankInt);
     }
 
-	public static void drinkPotion() {
-		// TODO Auto-generated method stub
-		
+	public static boolean drinkPotion() {
+        if(!Banking.isBankScreenOpen() && Interfaces.get(403) == null){
+            RSItem staminaPot[] = Inventory.find(potionIds);
+            Clicking.click(staminaPot);
+            Timing.waitCondition(new Condition() {
+                @Override
+                public boolean active() {
+                    General.sleep(25, 50);
+                    return Game.getSetting(638) > 0;
+                }
+            }, General.random(2000, 5000));
+            Options.setRunOn(true);
+            return true;
+        }
+        return false;
 	}
 }

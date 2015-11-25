@@ -100,8 +100,6 @@ public class scarAgilityMain extends Script implements Painting, EventBlockingOv
 		  
 		  Graphics2D gg = (Graphics2D)g;
 	      
-
-		      
 	      if (manager != null){
 	    	  State state = manager.getState();
 	    	  Indicator.playerStatus(g, manager.getPlayerStatus());	

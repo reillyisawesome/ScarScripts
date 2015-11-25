@@ -2,6 +2,7 @@ package scripts.scarPlanks.nodes;
 
 import static org.tribot.api.General.random;
 
+import org.tribot.api.General;
 import org.tribot.api.Timing;
 import org.tribot.api.interfaces.Positionable;
 import org.tribot.api.types.generic.Condition;
@@ -35,7 +36,7 @@ public class WalkToBank extends Node {
 
 	@Override
 	public int priority() {
-		return 0;
+		return 4;
 	}
 
 }

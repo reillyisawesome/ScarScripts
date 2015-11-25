@@ -36,25 +36,63 @@ public class BankOP  extends Node{
 						return Inventory.find("Coins").length > 0;
 					}
 				}, random(2500, 5000));
+                General.sleep(PlankValues.abc.DELAY_TRACKER.ITEM_INTERACTION.next());
+                PlankValues.abc.DELAY_TRACKER.ITEM_INTERACTION.reset();
 			} else {
-				General.println("Out of Coins");
+				General.println("Out of Coins!");
 				PlankValues.runScript = false;
 			}
 		}
-		//if (PlankValues.usePotions == true){
-			//Banking.withdraw(PlankValues.potionIds, 1)
-		//}
+		if (PlankValues.usePotions == true){
+            RSItem potions[] = Banking.find(PlankValues.potionIds);
+            if(potions.length > 0 && Inventory.getCount(PlankValues.potionIds) == 0){
+                Banking.withdrawItem(potions[0],1);
+                Timing.waitCondition(new Condition() {
+                    @Override
+                    public boolean active() {
+                        General.sleep(25,100);
+                        return Inventory.find(PlankValues.potionIds).length > 0;
+                    }
+                },General.random(2000,5000));
+                General.sleep(PlankValues.abc.DELAY_TRACKER.ITEM_INTERACTION.next());
+                PlankValues.abc.DELAY_TRACKER.ITEM_INTERACTION.reset();
+            } else {
+            	General.println("Out of Potions!");
+            }
+		}
+        RSItem logs[] = Banking.find(PlankValues.logs);
+        if(logs.length > 0){
+            if(Banking.withdrawItem(logs[0],0)) {
+                Timing.waitCondition(new Condition() {
+                    @Override
+                    public boolean active() {
+                        General.sleep(50, 200);
+                        return Inventory.find(PlankValues.logs).length > 0;
+                    }
+                }, General.random(3000, 5000));
+                General.sleep(PlankValues.abc.DELAY_TRACKER.ITEM_INTERACTION.next());
+                PlankValues.abc.DELAY_TRACKER.ITEM_INTERACTION.reset();
+            }
+        }else{
+            General.println("Out of logs!");
+            PlankValues.runScript = false;
+        }
+        if(PlankValues.usePotions){
+            if(Game.getSetting(638) == 0 && Game.getRunEnergy() <= 70 && PlankValues.hasPotions()){
+                Banking.close();
+            }
+        }
 		
 	}
 
 	@Override
 	public boolean validate() {
-		return PlankValues.atBank();
+		return PlankValues.atBank() && !PlankValues.hasLogs();
 	}
 
 	@Override
 	public int priority() {
-		return 0;
+		return 1;
 	}
 
 }
