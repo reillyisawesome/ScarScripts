@@ -3,31 +3,22 @@ package scripts.scarAgility;
 import org.tribot.api.Timing;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Login;
-import org.tribot.api2007.Player;
 import org.tribot.api2007.Skills;
-import org.tribot.api2007.types.RSArea;
-import org.tribot.api2007.types.RSModel;
-import org.tribot.api2007.types.RSPlayer;
-import org.tribot.api2007.types.RSTile;
 import org.tribot.api2007.util.ProjectionUtility;
 import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.EventBlockingOverride;
 import org.tribot.script.interfaces.Painting;
 import scripts.scarAgility.ui.graphics.Indicator;
-import scripts.scarAgility.ui.graphics.TileDrawing;
 import scripts.scarAgility.utils.action.Manager;
 import scripts.scarAgility.utils.action.State;
-import scripts.scarAgility.utils.areas.Area;
 import scripts.scarAgility.ui.MainGUI;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
 import java.io.IOException;
 import java.net.URL;
-import java.text.AttributedString;
 
 import javax.imageio.ImageIO;
 

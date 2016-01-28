@@ -66,9 +66,11 @@ public class MainGUI extends JPanel {
 		        }else if(comboBox.getSelectedItem() == "Super Energy Potion"){
 		        	int[] sepotionIDS = {3016, 3018, 3020, 3022};
 		            PlankValues.potionIds = sepotionIDS;
-		        }else{
+		        }else if(comboBox.getSelectedItem() == "Energy Potion") {
 		        	int[] epotionIDS = {3016, 3018, 3020, 3022};
 		            PlankValues.potionIds = epotionIDS;
+		        }else{
+		        	PlankValues.potionIds = null;
 		        }
 		        if(plankBox.getSelectedItem() == "Regular Plank"){
 		            PlankValues.interfaceChild = 89;
